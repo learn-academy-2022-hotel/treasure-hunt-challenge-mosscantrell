@@ -16,7 +16,10 @@ const App = () => {
   ])
 
   const handleGamePlay = (clickedSquare) => {
-    alert(clickedSquare)
+    // use setBoard here to update the useState from the default "?". clickedSquare is already attached to the index of the clicked box, so by passing that to updateBoard, setBoard knows what to change the value within the clicked box to
+    let updateBoard = [...board]
+    updateBoard[clickedSquare] = "🌳"
+    setBoard(updateBoard)
   }
 
   return (
