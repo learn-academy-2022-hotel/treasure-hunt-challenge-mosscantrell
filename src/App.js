@@ -15,6 +15,20 @@ const App = () => {
     "?"
   ])
 
+  const [treasureLocation, setTreasureLocation] = useState(Math.floor(Math.random() * board.length))
+
+  const [bombLocation, setBombLocation] = useState(Math.floor(Math.random() * board.length))
+
+  const winAndLose = (specifiedSquares) => {
+    let win = [treasureLocation]
+    win[specifiedSquares] = "🌸"
+    setTreasureLocation(win)
+
+    let loss = [bombLocation]
+    loss[specifiedSquares] = "🥀"
+    setBombLocation(loss)
+  }
+
   const handleGamePlay = (clickedSquare) => {
     // use setBoard here to update the useState from the default "?". clickedSquare is already attached to the index of the clicked box, so by passing that to updateBoard, setBoard knows what to change the value within the clicked box to
     let updateBoard = [...board]
@@ -22,6 +36,8 @@ const App = () => {
     setBoard(updateBoard)
   }
 
+  console.log(treasureLocation)
+  console.log(bombLocation)
   return (
     <>
       <h1>Treasure Hunt Game</h1>
@@ -34,6 +50,7 @@ const App = () => {
             square={square} 
             index={index} 
             handleGamePlay={handleGamePlay}
+            winAndLose={winAndLose}
           />
         })}
       </div>
